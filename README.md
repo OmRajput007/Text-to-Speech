@@ -52,20 +52,16 @@ Edit
 streamlit run app.py
 🎯 Demo
 
-Enter a text prompt for your story
-
-AI generates a personalized story
-
-Listen to the story narrated in a realistic AI voice
+- Enter a text prompt for your story
+- AI generates a personalized story
+- Listen to the story narrated in a realistic AI voice
 
 🔧 Future Improvements
-Downloadable audio files
 
-More voice options
-
-Custom branding for businesses
-
-Deploy to Streamlit Cloud or your own server
+- Downloadable audio files
+- More voice options
+- Custom branding for businesses
+- Deploy to Streamlit Cloud or your own server
 
 📢 Contributions
 PRs and suggestions are welcome to improve features or performance.

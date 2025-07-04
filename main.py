@@ -4,19 +4,41 @@ from elevenlabs import ElevenLabs
 from dotenv import load_dotenv
 import os
 
-# Load .env keys
+# Load .env keys (for local development)
 load_dotenv()
+
+# Get API keys - prioritize Streamlit secrets for cloud deployment
+try:
+    openai_api_key = st.secrets["OPENAI_API_KEY"]
+    organization_id = st.secrets.get("ORGANIZATION_ID")
+    project_id = st.secrets.get("PROJECT_ID") 
+    elevenlabs_api_key = st.secrets["ELEVENLABS_API_KEY"]
+except KeyError:
+    # Fall back to environment variables for local development
+    openai_api_key = os.getenv("OPENAI_API_KEY")
+    organization_id = os.getenv("ORGANIZATION_ID")
+    project_id = os.getenv("PROJECT_ID")
+    elevenlabs_api_key = os.getenv("ELEVENLABS_API_KEY")
+
+# Check if API keys are available
+if not openai_api_key:
+    st.error("❌ OpenAI API key not found. Please set it in Streamlit secrets or environment variables.")
+    st.stop()
+
+if not elevenlabs_api_key:
+    st.error("❌ ElevenLabs API key not found. Please set it in Streamlit secrets or environment variables.")
+    st.stop()
 
 # Initialize OpenAI client
 client = OpenAI(
-    api_key=os.getenv("OPENAI_API_KEY"),
-    organization=os.getenv("ORGANIZATION_ID"),
-    project=os.getenv("PROJECT_ID")
+    api_key=openai_api_key,
+    organization=organization_id,
+    project=project_id
 )
 
 # Initialize ElevenLabs client
 elevenlabs_client = ElevenLabs(
-    api_key=os.getenv("ELEVENLABS_API_KEY")
+    api_key=elevenlabs_api_key
 )
 
 # Streamlit App

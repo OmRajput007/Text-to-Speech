@@ -50,6 +50,7 @@ bash
 Copy
 Edit
 streamlit run app.py
+
 🎯 Demo
 
 - Enter a text prompt for your story
